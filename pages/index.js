@@ -1,16 +1,7 @@
-import { data } from "../SpeakerData"
-import Speaker from "../components/Speaker"
+import Speakers from "../components/Speakers";
 
 const IndexPage = () => {
-	return (
-		<div className='container speakers-list'>
-			<div className='row'>
-				{data.map((speaker) => (
-					<Speaker speaker={speaker} />
-				))}
-			</div>
-		</div>
-	)
-}
+	return <Speakers />;
+};
 
-export default IndexPage
+export default IndexPage;
