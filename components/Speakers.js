@@ -1,13 +1,20 @@
-import { data } from "../SpeakerData";
-import Header from "./Header";
+import { useState } from "react";
 import SpeakersList from "./SpeakersList";
+import SpeakersToolbar from "./SpeakersToolbar";
 
-function Speakers() {
+function Speakers({ data, theme, setTheme }) {
+	const [showSessions, setShowSessions] = useState(true);
+
 	return (
-		<div className="container-fluid">
-			<Header />
-			<SpeakersList data={data} />
-		</div>
+		<>
+			<SpeakersToolbar
+				theme={theme}
+				setTheme={setTheme}
+				showSessions={showSessions}
+				setShowSessions={setShowSessions}
+			/>
+			<SpeakersList data={data} showSessions={showSessions} />
+		</>
 	);
 }
 
