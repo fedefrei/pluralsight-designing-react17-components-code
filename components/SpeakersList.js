@@ -1,26 +1,20 @@
+import useRequestSpeakers, { REQUEST_STATUS } from "../hooks/useRequestSpeakers"
 import Speaker from "./Speaker"
-import { data } from "../SpeakerData"
-import { useState } from "react"
 
 function SpeakersList({ showSessions }) {
-	const [speakersData, setSpeakersData] = useState(data)
+	const { speakersData, requestStatus, error, onFavoriteToggle } =
+		useRequestSpeakers(2000)
 
-	function onFavoriteToggle(speakerID) {
-		const speakerPrevious = speakersData.find(
-			(speaker) => speaker.id === speakerID
+	if (requestStatus === REQUEST_STATUS.FAILURE) {
+		return (
+			<div className='text-dange'>
+				ERROR: <b>Loading speaker data failed {error}</b>
+			</div>
 		)
-
-		const speakerUpdated = {
-			...speakerPrevious,
-			favorite: !speakerPrevious.favorite,
-		}
-
-		const speakerDataNew = speakersData.map((record) =>
-			record.id === speakerID ? speakerUpdated : record
-		)
-
-		setSpeakersData(speakerDataNew)
 	}
+
+	if ((requestStatus === REQUEST_STATUS.LOADING) === true)
+		return <div>Loading...</div>
 
 	return (
 		<div className='container speakers-list'>
