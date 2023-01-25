@@ -59,21 +59,6 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
 		delayFunction();
 	}
 
-	function onFavoriteToggle(ID) {
-		const recPrevious = data.find((speaker) => speaker.id === ID);
-
-		const recUpdated = {
-			...recPrevious,
-			favorite: !recPrevious.favorite,
-		};
-
-		const recDataNew = data.map((record) =>
-			record.id === ID ? recUpdated : record
-		);
-
-		setData(recDataNew);
-	}
-
 	return { data, requestStatus, error, updateRecord };
 }
 
