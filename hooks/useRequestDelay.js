@@ -30,6 +30,8 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
 	}, []);
 
 	function updateRecord(recordUpdated, doneCallback) {
+		const originalRecords = [...data];
+
 		//map over the data but replace the previous record with the updated one
 		const newRecords = data.map(function (rec) {
 			return rec.id === recordUpdated.id ? recordUpdated : rec;
@@ -38,14 +40,18 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
 		//simulate an api call
 		async function delayFunction() {
 			try {
+				setData(newRecords);
 				await delay(delayTime);
 
 				if (doneCallback) {
 					doneCallback();
 				}
-
-				setData(newRecords);
 			} catch (error) {
+				if (doneCallback) {
+					doneCallback();
+				}
+
+				setData(originalRecords);
 				console.log("Error", error);
 			}
 		}
