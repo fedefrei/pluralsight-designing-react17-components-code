@@ -1,5 +1,5 @@
-import { ThemeContext } from "./App";
 import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 function SpeakersToolbar({ showSessions, setShowSessions }) {
 	const { theme, setTheme } = useContext(ThemeContext);
