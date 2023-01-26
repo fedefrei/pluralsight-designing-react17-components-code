@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { data } from "../SpeakerData";
 
 export const REQUEST_STATUS = {
 	LOADING: "loading",
