@@ -14,7 +14,7 @@ function SpeakerFilterProvider({
 		eventYear,
 		setEventYear,
 		EVENT_YEARS,
-	} = useSpeakerFilter(startingShowSessions);
+	} = useSpeakerFilter(startingShowSessions, startingEventYear);
 
 	return (
 		<SpeakerFilterContext.Provider
